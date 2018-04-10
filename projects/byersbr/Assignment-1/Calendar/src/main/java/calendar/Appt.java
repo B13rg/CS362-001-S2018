@@ -117,7 +117,7 @@ public class Appt{
         setEmailAddress(emailAddress);
         
         //Set default recurring information
-        int[] recurringDays = new int[0];
+        int[] recurringDays = new int[90];
         setRecurrence(recurringDays, RECUR_BY_MONTHLY, 0, RECUR_NUMBER_NEVER);
         
         //Leave XML Element null
@@ -176,7 +176,7 @@ public class Appt{
 		else if (startYear <= 0)
 			this.valid = false;
 		else {
-			int NumDaysInMonth = CalendarUtil.NumDaysInMonth(startYear, startMonth - 1);
+			int NumDaysInMonth = CalendarUtil.NumDaysInMonth(startYear, startMonth);
 			if (startDay < 1 || startDay > NumDaysInMonth)
 				this.valid = false;
 			else
@@ -298,11 +298,11 @@ public class Appt{
      */
     public void setRecurrence(int[] recurDays, int recurBy, int recurIncrement, int recurNumber) {
         setRecurDays(recurDays);
-        setRecurBy(recurBy);
+        setRecurBy(recurDays[0]);
         setRecurIncrement(recurIncrement);
         setRecurNumber(recurNumber);
     }
-    
+
     private void setRecurDays(int[] recurDays) {
         if (recurDays == null) {
             this.recurDays = new int[0];

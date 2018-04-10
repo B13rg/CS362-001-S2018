@@ -1,2 +1,3 @@
 projects/byersbr/Assignment-1/Calendar/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
-projects/byersbr/Assignment-1/Calendar/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+*.lst
+*.class
