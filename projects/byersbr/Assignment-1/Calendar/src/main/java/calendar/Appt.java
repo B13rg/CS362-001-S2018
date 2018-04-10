@@ -104,28 +104,28 @@ public class Appt{
      */
     public Appt(int startHour, int startMinute, 
             int startDay, int startMonth, int startYear,
-             String title, String description, String emailAddress ) {
-
-    //Sets all instance variables except recurring information
-    setStartHour(startHour);
-    setStartMinute(startMinute);
-    setStartDay(startDay);
-    setStartYear(startYear);
-    setStartMonth(startMonth);
-    setTitle(title);
-    setDescription(description);
-    setEmailAddress(emailAddress);
-    
-    //Set default recurring information
-    int[] recurringDays = new int[0];
-    setRecurrence(recurringDays, RECUR_BY_MONTHLY, 0, RECUR_NUMBER_NEVER);
-    
-    //Leave XML Element null
-    setXmlElement(null);
-    
-    //Sets valid to true - this is now a valid appointment
-    this.valid = true;
-}
+             String title, String description, String emailAddress ) 
+    {
+        //Sets all instance variables except recurring information
+        setStartHour(startHour);
+        setStartMinute(startMinute);
+        setStartDay(startDay);
+        setStartYear(startYear);
+        setStartMonth(startMonth);
+        setTitle(title);
+        setDescription(description);
+        setEmailAddress(emailAddress);
+        
+        //Set default recurring information
+        int[] recurringDays = new int[0];
+        setRecurrence(recurringDays, RECUR_BY_MONTHLY, 0, RECUR_NUMBER_NEVER);
+        
+        //Leave XML Element null
+        setXmlElement(null);
+        
+        //Sets valid to true - this is now a valid appointment
+        this.valid = true;
+    }
     /**
      * Constructs a new appointment that has no start time on the 
      * date specified. The appointment is constructed with no recurrence 
@@ -302,6 +302,7 @@ public class Appt{
         setRecurIncrement(recurIncrement);
         setRecurNumber(recurNumber);
     }
+    
     private void setRecurDays(int[] recurDays) {
         if (recurDays == null) {
             this.recurDays = new int[0];
