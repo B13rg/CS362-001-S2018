@@ -1,0 +1,22 @@
+{
+    "run": [
+        {
+            "name": "Calendar",
+            "projectName": "Calendar",
+            "workingDirectory": "/home/flynn/Documents/Homework/SEng2/CS362-001-S2018/projects/byersbr/Assignment-2/Calendar",
+            "args": [],
+            "vmargs": [],
+            "preLaunchTask": ""
+        }
+    ],
+    "debug": [
+        {
+            "name": "Calendar",
+            "projectName": "Calendar",
+            "workingDirectory": "/home/flynn/Documents/Homework/SEng2/CS362-001-S2018/projects/byersbr/Assignment-2/Calendar",
+            "args": [],
+            "vmargs": [],
+            "preLaunchTask": ""
+        }
+    ]
+}
