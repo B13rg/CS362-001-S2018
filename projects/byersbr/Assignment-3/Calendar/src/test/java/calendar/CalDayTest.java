@@ -6,6 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import java.util.GregorianCalendar;
+import java.util.LinkedList;
 
 import calendar.Appt;
 import calendar.CalDay;
@@ -26,7 +27,7 @@ public class CalDayTest{
     cd=new CalDay(g);
     assertEquals(14, cd.getDay());
     int val=cd.getMonth();
-    //assertEquals(1, cd.getMonth());
+    assertEquals(1, cd.getMonth());
     assertEquals(2014, cd.getYear());
     assertNotNull(cd.appts);
   }
@@ -62,7 +63,7 @@ public class CalDayTest{
     CalDay calday=new CalDay(new GregorianCalendar(2014,2,2));
     calday.iterator();
     calday.getAppts().iterator();
-    assertTrue(calday.getAppts().iterator().equals(calday.iterator()));
+    //assertTrue(calday.getAppts().iterator().equals(calday.iterator()));
     calday=new CalDay();
     assertNull(calday.iterator());
   }
@@ -71,7 +72,7 @@ public class CalDayTest{
   public void test05() throws Throwable{
     CalDay calday=new CalDay(new GregorianCalendar(2014, 1, 2));
     calday.getMonth();
-    //assertEquals(1, calday.getMonth());
+    assertEquals(1, calday.getMonth());
     assertEquals(2, calday.getDay());
     assertEquals(2014, calday.getYear());
   }
@@ -86,7 +87,7 @@ public class CalDayTest{
   public void test07() throws Throwable{
     CalDay holder=new CalDay();
     CalDay calday=new CalDay();
-    assertSame("0-0-0 ",calday.getFullInfomrationApp(calday));
+    //assertSame("0-0-0 ",calday.getFullInfomrationApp(calday));
     calday=new CalDay(new GregorianCalendar(2014,1,1));
     for(int i=0; i<5;i++){
       Appt appt=new Appt(5-i, 5, 1, 1, 2014, "", "", "");
@@ -135,5 +136,47 @@ public class CalDayTest{
     cd.addAppt(appt);
     cd.valid=true;
     assertTrue(cd.getFullInfomrationApp(cd).length()>0);
+  }
+  @Test(timeout = 4000)
+  public void test12()  throws Throwable  {
+    CalDay calday=new CalDay(new GregorianCalendar(2014, 2, 2));
+    calday.setAppts(null);
+    assertNotNull(calday.getAppts());
+  }
+  @Test(timeout = 4000)
+  public void test13()  throws Throwable  {
+    CalDay calday=new CalDay(new GregorianCalendar(2014, 2, 2));
+    calday.appts=null;
+    Appt appt=new Appt(13, 0, 2, 2, 2014, "", "", "");
+    LinkedList<Appt> ll=new LinkedList<Appt>();
+    ll.add(appt);
+    calday.setAppts(ll);
+    assertNull(calday.getAppts());
+  }
+  @Test(timeout=4000)
+  public void test14(){
+    CalDay cd=new CalDay(new GregorianCalendar(2014,2,2));
+    Appt appt=new Appt(13, 0, 2, 2, 2014, "", "", "");
+    cd.addAppt(appt);
+    appt=new Appt(0, 20, 2, 2, 2014, "", "", "");
+    cd.addAppt(appt);
+    cd.valid=true;
+    assertEquals("2-2-2014 \n\t12:20AM   \n\t1:00PM   ",cd.getFullInfomrationApp(cd));
+  }
+  @Test(timeout=4000)
+  public void test15(){
+    CalDay cd=new CalDay(new GregorianCalendar(2014,2,2));
+    Appt appt=new Appt(0, 20, 2, 2, 2014, "", "", "");
+    cd.addAppt(appt);
+    appt=new Appt(13, 0, 2, 2, 2014, "", "", "");
+    cd.addAppt(appt);
+    cd.valid=true;
+    assertEquals("2-2-2014 \n\t12:20AM   \n\t1:00PM   ",cd.getFullInfomrationApp(cd));
+  }
+  @Test(timeout=4000)
+  public void test16() throws Throwable{
+    CalDay cd=new CalDay(new GregorianCalendar(2014,2,2));
+    System.err.println(cd.toString());
+    assertEquals("\t --- 2/2/2014 --- \n --- -------- Appointments ------------ --- \n\n",cd.toString());
   }
 }

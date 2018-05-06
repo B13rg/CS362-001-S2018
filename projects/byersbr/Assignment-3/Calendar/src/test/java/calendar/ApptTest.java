@@ -43,6 +43,7 @@ public class ApptTest  {
       assertFalse(appt0.isRecurring());
       assertEquals("\t14/9/2018 at 3:30pm ,Birthday Party, This is my birthday party\n", string0);
       assertEquals(0, appt0.getRecurIncrement());
+      assertNull(appt0.getXmlElement());
       appt0.setValid();
   }
 @Test(timeout = 4000)
@@ -77,35 +78,6 @@ public void test02() throws Throwable{
   appt.setXmlElement(xml);
   assertEquals(xml, appt.getXmlElement());
 }
-
-@Test(timeout=4000)
-//This will test checking if the appointment is valid.
-public void test03() throws Throwable{
-  //First create the appointments
-  int[][] values={ {1,1,2018,1},
-                    {32,1,2018,0},
-                    {1,13,2018,0},
-                    {28,2,2001,0},
-                    {29,2,2000,0},
-                    {1,1,-2000,0},
-                    {-1,1,1,0},
-                    {1,-1,2012,0},
-                    {67,1,2018,0},
-                    {-2,1,2018,0}};
-
-  for(int i=0; i<values.length;i++){
-    Appt appt=new Appt(values[i][0],values[i][1],values[i][2],"","","");
-    appt.setValid();
-    if(values[i][3]==1){
-      appt.getValid();
-      //assertTrue(appt.getValid());
-    }else{
-      appt.getValid();
-      //assertFalse(appt.getValid());
-    }
-  }
-}
-
   @Test(timeout=4000)
   public void test04() throws Throwable{
     String newEmail="testemail@null.com";
@@ -172,7 +144,7 @@ public void test03() throws Throwable{
     assertEquals(recurBy, appt.getRecurBy());
     assertEquals(recurIncrement, appt.getRecurIncrement());
     assertEquals(recurNumber, appt.getRecurNumber());
-    assertEquals(recurDays, appt.getRecurDays());
+    assertEquals(recurDays.length, appt.getRecurDays().length);
   }
 
   @Test(timeout=4000)
@@ -220,5 +192,179 @@ public void test03() throws Throwable{
     assertEquals("", appt.getDescription());
     assertEquals("", appt.getEmailAddress());
   }
-}
 
+  @Test(timeout=4000)
+  //This will test checking if the appointment is valid.
+  public void test12() throws Throwable{
+    //First create the appointments
+    int[] values={32,1,2018,0};
+    Appt appt=new Appt(values[0],values[1],values[2],"","","");
+    appt.setValid();
+    assertFalse(appt.getValid());
+  }
+  @Test(timeout=4000)
+  //This will test checking if the appointment is valid.
+  public void test13() throws Throwable{
+    //First create the appointments
+    int[] values={1,13,2018,0};
+    Appt appt=new Appt(values[0],values[1],values[2],"","","");
+    appt.setValid();
+    assertFalse(appt.getValid());
+  }
+  @Test(timeout=4000)
+  //This will test checking if the appointment is valid.
+  public void test14() throws Throwable{
+    //First create the appointments
+    int[] values={28,2,2001,0};
+    Appt appt=new Appt(values[0],values[1],values[2],"","","");
+    appt.setValid();
+    assertFalse(appt.getValid());
+  }
+  @Test(timeout=4000)
+  //This will test checking if the appointment is valid.
+  public void test15() throws Throwable{
+    //First create the appointments
+    int[] values={29,2,2000,0};
+    Appt appt=new Appt(values[0],values[1],values[2],"","","");
+    appt.setValid();
+    assertFalse(appt.getValid());
+  }
+  @Test(timeout=4000)
+  //This will test checking if the appointment is valid.
+  public void test16() throws Throwable{
+    //First create the appointments
+    int[] values={1,1,-2000,0};
+    Appt appt=new Appt(values[0],values[1],values[2],"","","");
+    appt.setValid();
+    assertFalse(appt.getValid());
+  }
+  @Test(timeout=4000)
+  //This will test checking if the appointment is valid.
+  public void test17() throws Throwable{
+    //First create the appointments
+    int[] values={-1,1,1,0};
+    Appt appt=new Appt(values[0],values[1],values[2],"","","");
+    appt.setValid();
+    assertFalse(appt.getValid());
+  }
+  @Test(timeout=4000)
+  //This will test checking if the appointment is valid.
+  public void test18() throws Throwable{
+    //First create the appointments
+    int[] values={1,-1,2012,0};
+    Appt appt=new Appt(values[0],values[1],values[2],"","","");
+    appt.setValid();
+    assertFalse(appt.getValid());
+  }
+  @Test(timeout=4000)
+  //This will test checking if the appointment is valid.
+  public void test19() throws Throwable{
+    //First create the appointments
+    int[] values={67,1,2018,0};
+    Appt appt=new Appt(values[0],values[1],values[2],"","","");
+    appt.setValid();
+    assertFalse(appt.getValid());
+  }
+  @Test(timeout=4000)
+  //This will test checking if the appointment is valid.
+  public void test20() throws Throwable{
+    //First create the appointments
+    int[] values={-2,1,2018,0};
+    Appt appt=new Appt(values[0],values[1],values[2],"","","");
+    appt.setValid();
+    assertFalse(appt.getValid());
+  }
+
+  @Test(timeout=4000)
+  //This will test checking if the appointment is valid.
+  public void test21() throws Throwable{
+    //First create the appointments
+    int[] values={1,1,2018,1};
+    Appt appt=new Appt(values[0],values[1],values[2],"","","");
+    appt.setValid();
+    assertFalse(appt.getValid());
+  }
+  @Test(timeout=4000)
+  //This will test checking if the appointment is valid.
+  public void test23() throws Throwable{
+    Appt appt=new Appt(11, 0, 1, 1, 1, "", "", "");
+    assertEquals("11:0am",appt.represntationApp());
+  }
+  @Test(timeout=4000)
+  //This will test checking if the appointment is valid.
+  public void test24() throws Throwable{
+    Appt appt=new Appt(13, 0, 1, 1, 1, "", "", "");
+    assertEquals("1:0pm",appt.represntationApp());
+  }
+
+  @Test(timeout=4000)
+  //This will test checking if the appointment is valid.
+  public void test25() throws Throwable{
+    Appt appt=new Appt(0, 0, 1, 1, 1, "", "", "");
+    assertEquals("12:0am",appt.represntationApp());
+  }
+
+  @Test(timeout=4000)
+  //This will test checking if the appointment is valid.
+  public void test26() throws Throwable{
+    Appt appt=new Appt(32,1,2018,"","","");
+    appt.setValid();
+    assertEquals("",appt.toString());
+  }
+  @Test(timeout=4000)
+  //This will test checking if the appointment is valid.
+  public void test27() throws Throwable{
+    //First create the appointments
+    Appt appt=new Appt(1,13,2018,"","","");
+    appt.setValid();
+    assertFalse(appt.getValid());
+  }
+  @Test(timeout=4000)
+  //This will test checking if the appointment is valid.
+  public void test28() throws Throwable{
+    //First create the appointments
+    Appt appt=new Appt(1,1,0,"","","");
+    appt.setValid();
+    assertFalse(appt.getValid());
+  }
+  @Test(timeout=4000)
+  //This will test checking if the appointment is valid.
+  public void test29() throws Throwable{
+    //First create the appointments
+    Appt appt=new Appt(1,1,-1,"","","");
+    appt.setValid();
+    assertFalse(appt.getValid());
+  }
+  @Test(timeout=4000)
+  //This will test checking if the appointment is valid.
+  public void test30() throws Throwable{
+    //First create the appointments
+    Appt appt=new Appt(1,0,1,1,2018,"","","");
+    appt.setValid();
+    assertTrue(appt.getValid());
+  }
+  @Test(timeout=4000)
+  //This will test checking if the appointment is valid.
+  public void test31() throws Throwable{
+    //First create the appointments
+    Appt appt=new Appt(24,0,1,1,2018,"","","");
+    appt.setValid();
+    assertFalse(appt.getValid());
+  }
+  @Test(timeout=4000)
+  //This will test checking if the appointment is valid.
+  public void test32() throws Throwable{
+    //First create the appointments
+    Appt appt=new Appt(1,60,1,1,2018,"","","");
+    appt.setValid();
+    assertFalse(appt.getValid());
+  }
+  @Test(timeout=4000)
+  //This will test checking if the appointment is valid.
+  public void test33() throws Throwable{
+    //First create the appointments
+    Appt appt=new Appt(1,-1,1,1,2018,"","","");
+    appt.setValid();
+    assertFalse(appt.getValid());
+  }
+}
