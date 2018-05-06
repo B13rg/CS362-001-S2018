@@ -59,7 +59,7 @@ public class CalDay {
 		int year = cal.get(cal.YEAR);
 	
 		setDay(day);
-		setMonth(month+1);
+		setMonth(month);
 		setYear(year);
 	
 		setAppts(new LinkedList<Appt>());
@@ -113,10 +113,7 @@ public class CalDay {
 	}
 	
 	/** Sets appts */
-	private void setAppts(LinkedList<Appt> appts) {
-		if(appts!=null)
-				this.appts = appts;
-		
+	public void setAppts(LinkedList<Appt> appts) {
 		if(appts!=null&&appts.size()==0)
 			this.appts = appts;
 	}
@@ -173,7 +170,7 @@ public class CalDay {
 	     StringBuilder sb = new StringBuilder();
 	
 		if (isValid()) {
-			String todayDate = (getMonth()+1) + "/" + getDay() + "/" + getYear();
+			String todayDate = (getMonth()) + "/" + getDay() + "/" + getYear();
 			sb.append("\t --- " + todayDate + " --- \n");
 			sb.append(" --- -------- Appointments ------------ --- \n");
 			Iterator<Appt> itr = this.appts.iterator();
