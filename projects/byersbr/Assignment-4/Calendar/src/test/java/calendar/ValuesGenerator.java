@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class ValuesGenerator {
+	
 	private final static int MAX_VALUE = 10;
 	// private final static final int MIN_VALUE=-10;
 
@@ -14,6 +15,7 @@ public class ValuesGenerator {
 		int n = random.nextInt(MAX_VALUE);// get a random number between 0 (inclusive) and MAX_VALUE=10 (exclusive)
 		return (int) n;
 	}
+	
 
 	/**
 	 * This generates a coin flip with a probability <tt>probability</tt> of
@@ -22,6 +24,8 @@ public class ValuesGenerator {
 	public static boolean getBoolean(float probability, Random random) {
 		return random.nextFloat() < probability;
 	}
+
+
 
 	private static final char[] BASE_CHARACTERS = { ' ', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b',
 			'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w',
@@ -77,5 +81,37 @@ public class ValuesGenerator {
 		}
 		return tempArray;
 
+	}
+}
+
+class ValGen{
+	private static Random r=new Random();
+	public static int RandInt(){
+		return r.nextInt();
+	}
+
+	public static int RandInt(int max, int min){
+		return r.nextInt(max)+min;
+	}
+
+	public static boolean RandBool(){
+		return r.nextInt()%2==1;
+	}
+
+	private static final char[] listChars={ ' ', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b',
+	'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w',
+	'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
+	'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+
+	public static char RandChar(){
+		return listChars[r.nextInt(listChars.length)];
+	}
+
+	public static int[] RandIntArray(int length, int max){
+		int[] arr=new int[length];
+		for(int i=0; i<length; i++){
+			arr[i]=r.nextInt()%max+1;
+		}
+		return arr;
 	}
 }
