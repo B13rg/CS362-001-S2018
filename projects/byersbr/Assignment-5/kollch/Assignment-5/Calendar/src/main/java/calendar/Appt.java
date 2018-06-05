@@ -458,7 +458,7 @@ public class Appt {
      *
      * @return a printable representation of this appointment
      */
-    public String represntationApp() {
+    private String representationApp() {
         String half = (getStartHour() > 11) ? "pm" : "am";
         int printableHour = getStartHour();
         if (printableHour > 11) {
@@ -478,7 +478,7 @@ public class Appt {
             System.err.println("\tThis appointment is not valid");
         }
         String day = this.getStartMonth() + "/" + this.getStartDay() + "/" + this.getStartYear() + " at ";
-        return "\t" + day + this.represntationApp() + " ," + getTitle() + ", " + getDescription() + "\n";
+        return "\t" + day + this.representationApp() + " ," + getTitle() + ", " + getDescription() + "\n";
     }
 
 

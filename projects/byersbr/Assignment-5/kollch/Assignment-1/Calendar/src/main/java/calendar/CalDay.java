@@ -113,7 +113,7 @@ public class CalDay {
 	}
 	
 	/** Sets appts */
-	public void setAppts(LinkedList<Appt> appts) {
+	private void setAppts(LinkedList<Appt> appts) {
 		if(appts!=null)
 				this.appts = appts;
 		

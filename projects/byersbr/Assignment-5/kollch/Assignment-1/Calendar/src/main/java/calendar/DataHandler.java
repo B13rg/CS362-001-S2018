@@ -125,7 +125,7 @@ public class DataHandler {
      * @throws DateOutOfRangeException If any of the days constructed by the
      *  given values are invalid, or if date 2 is not after date 1.
      **/
-    public LinkedList<CalDay> getApptRange(GregorianCalendar firstDay, 
+    public List<CalDay> getApptRange(GregorianCalendar firstDay, 
             GregorianCalendar lastDay) throws DateOutOfRangeException {
 
             //Internal Diagnositic Messages turned on when true
@@ -325,7 +325,7 @@ public class DataHandler {
      * appointment does not recur it returns null. If the date cannot be 
      * calculated for some reason it returns null.
      **/
-    public static GregorianCalendar getNextApptOccurrence(Appt appt, 
+    private static GregorianCalendar getNextApptOccurrence(Appt appt, 
             GregorianCalendar day) {
         //If the appointment does not recur then return null
         if (!appt.isRecurring()) {
